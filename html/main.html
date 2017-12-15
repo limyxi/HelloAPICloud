@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>Hello APP</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+	<style>
+		div{
+			background-color: #f00;
+			height: 50px;
+			line-height: 50px;
+			color: #fff;
+			font-size: 20px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+    <div onclick="openScanner()">
+    	hello guys!
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+	//api全局作用域内只拓展了一个对象api
+	//引擎自带的对象，不需要require
+	function openScanner(){
+		//大部分的API方法，第一参数都是options,第二个参数多是callback函数
+		api.confirm({
+			'title':"APICloud",
+			"msg":"是否开启二维码扫描功能",
+			"buttons":['打开','取消']
+		},function(ret,err){
+			if (ret.buttonIndex ==1) {
+				var scanner = api.require("scanner");
+    			scanner.open();
+			}else{
+				//do nothing
+			}
+		});
+		
+	}
+	// dom对象和js对象是完全独立渲染的
+	// onload = function (){
+	// 	var scanner = api.require("scanner");
+ //    	scanner.open();
+	// }
+	//apicloud引擎定义的时间apiready
+	apiready = function(){
+	    // var scanner = api.require("scanner");
+	    // scanner.open();
+	}
+	    
+	
+    
+</script>
+</html>
